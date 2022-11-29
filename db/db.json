@@ -1,0 +1,16 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Pomme de Terre",
+      "description": "Les meilleures pomme de terre ",
+      "price": 4
+    },
+    {
+      "id": 2,
+      "name": "Carottes",
+      "description": "Les meilleures pomme de terre ",
+      "price": 4
+    }
+  ]
+}
