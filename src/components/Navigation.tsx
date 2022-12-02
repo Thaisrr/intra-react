@@ -33,7 +33,9 @@ const Navigation = () => (
             <li>
                 <NavLink to='/dashboard2'>Dashboard ( API )</NavLink>
             </li>
-
+            <li>
+                <NavLink to='/forms'>Les Formulaires</NavLink>
+            </li>
         </ul>
     </nav>
 )

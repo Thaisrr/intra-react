@@ -12,6 +12,7 @@ import Parent from "./pages/Parent";
 import Dashboard from "./pages/Dashboard";
 import Dashboard2 from "./pages/Dashboard2";
 import ProductDetails from "./pages/ProductDetails";
+import Formulaires from "./pages/Formulaires";
 
 // import Conditionnel from './pages/Conditionnel';
 const Conditionnel = lazy(() => import('./pages/Conditionnel'));
@@ -36,6 +37,7 @@ function App() {
               <Route path='/dashboard' element={<Dashboard/>} />
               <Route path='/dashboard2' element={<Dashboard2/>} />
               <Route path='/details/:id' element={<ProductDetails/>} />
+              <Route path='/forms' element={<Formulaires/>} />
               <Route path="*" element={<h1>😭 404 Not Found 😭</h1>} />
           </Routes>
         </Suspense>

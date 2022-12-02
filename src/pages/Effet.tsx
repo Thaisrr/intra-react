@@ -1,6 +1,5 @@
 import {useCallback, useEffect, useState} from "react";
 import axios from "axios";
-import {deflateRaw} from "zlib";
 
 const Effet = () => {
     console.log('Lancement de la fonction');
