@@ -1,12 +1,14 @@
 import React, {useState} from "react";
-import {useForm} from "react-hook-form";
+import {FieldValue, useForm} from "react-hook-form";
+import {User} from "../helpers/types/User";
+import {inscription} from "../helpers/services/AuthService";
 
 const Formulaires = () => {
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
 
-    const {register, handleSubmit, watch, formState : {errors}} = useForm();
+    const {register, handleSubmit, watch, formState : {errors}} = useForm<User>();
     const watchPassword = watch('password'); // name du champs à surveiller
     // Sans paramétres : surveille tous les champs
 
@@ -25,8 +27,8 @@ const Formulaires = () => {
         }
     }
 
-    const saveUser = (value: any) => {
-        console.log(value);
+    const saveUser = (value: User) => {
+        inscription(value);
     }
 
     return (

@@ -12,5 +12,16 @@
       "description": "Les meilleures pomme de terre ",
       "price": 4
     }
+  ],
+  "users": [
+    {
+      "email": "toto@mail.fr",
+      "password": "$2a$10$KXCKNoBYd7YF9p.WqWcl9uoyzgHoAeiOypP.pKMDkLQN9MpOvkgbi",
+      "username": "Toto",
+      "title": "empress",
+      "choice": false,
+      "confirm": false,
+      "id": 1
+    }
   ]
 }

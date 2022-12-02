@@ -1,6 +1,6 @@
-import React, { lazy, Suspense } from 'react';
+import React, {lazy, Suspense, useState} from 'react';
 import './App.css';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import Presentation from './pages/Presentation/Presentation';
 import Navigation from './components/Navigation';
 import Listes from './pages/Listes';
@@ -13,16 +13,27 @@ import Dashboard from "./pages/Dashboard";
 import Dashboard2 from "./pages/Dashboard2";
 import ProductDetails from "./pages/ProductDetails";
 import Formulaires from "./pages/Formulaires";
+import Login from "./pages/Login";
+import {isLogged as isLoggedService} from "./helpers/services/AuthService";
 
-// import Conditionnel from './pages/Conditionnel';
+
 const Conditionnel = lazy(() => import('./pages/Conditionnel'));
+const Users = lazy(() => import('./pages/Users'));
+const AddUser = lazy(() => import('./pages/AddUser'));
 
+const ProtectedRoute = ({children} : {children: JSX.Element}) => {
+    if(isLoggedService()) return children; // Le composant visé
+    return <Navigate to='/login' replace/> // Redirection vers login
+}
 
 function App() {
-  return (
+    const [isLogged, setIsLogged] = useState<boolean>(isLoggedService());
+
+
+    return (
     <div className="App">
       <BrowserRouter> {/* Cette balise doit toujours être en top level */}
-      <Navigation/>
+      <Navigation isLogged={isLogged} setIsLogged={setIsLogged}/>
       <main>
         <Suspense fallback={<div>Chargement...</div>}> {/* Obligatoire en lazy loading +  Créer un composant loader */}
           <Routes>
@@ -38,6 +49,11 @@ function App() {
               <Route path='/dashboard2' element={<Dashboard2/>} />
               <Route path='/details/:id' element={<ProductDetails/>} />
               <Route path='/forms' element={<Formulaires/>} />
+              <Route path='/login' element={<Login setIsLogged={setIsLogged}/>} />
+              <Route path='/users' element={<ProtectedRoute><Users/></ProtectedRoute>} >
+                      <Route path='add' element={<AddUser/>} />
+                      <Route path='dashboard' element={<h2>Dashboard</h2>} />
+              </Route>
               <Route path="*" element={<h1>😭 404 Not Found 😭</h1>} />
           </Routes>
         </Suspense>

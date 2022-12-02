@@ -9,9 +9,7 @@ const ProductDetails = () => {
     //const id : number | null = (params.id)?  Number(params.id) : null;
     const [product, setProduct] = useState<Product>();
     const load = useCallback(async () => {
-        if(id) {
-            setProduct(await getOne(+id));
-        }
+        if(id) {setProduct(await getOne(+id));}
     }, [id]);
 
     useEffect(() => {

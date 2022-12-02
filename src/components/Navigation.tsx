@@ -1,6 +1,9 @@
 import {NavLink} from 'react-router-dom';
+import {logout} from "../helpers/services/AuthService";
 
-const Navigation = () => (
+type NavProps = {isLogged: boolean, setIsLogged: Function}
+const Navigation = ({isLogged, setIsLogged} : NavProps ) => (
+
     <nav>
         <ul>
             <li>
@@ -36,6 +39,28 @@ const Navigation = () => (
             <li>
                 <NavLink to='/forms'>Les Formulaires</NavLink>
             </li>
+
+            {isLogged ? (
+                <>
+                    <li>
+                        <NavLink to='/users'>Utilisateurs</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to={'/users/add'}>Ajouter un user</NavLink>
+                    </li>
+                    <li>
+                        <button onClick={() => {
+                            logout();
+                            setIsLogged(false);
+                        }}>Logout</button>
+                    </li>
+                </>
+            ) : (
+                <li>
+                    <NavLink to='/login'>Connexion</NavLink>
+                </li>
+            )}
+
         </ul>
     </nav>
 )
